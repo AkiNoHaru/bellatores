@@ -13,6 +13,7 @@
   --void-rgb:    10,11,8;   /* même couleur, en RGB pour les dégradés semi-transparents */
   --void-2:      #0e0f0b;   /* fond secondaire (sections alternées) */
   --charcoal:    #15160f;   /* panneaux / cartes */
+  --charcoal-rgb: 21,22,15; /* même couleur, en RGB pour le fondu des cartes */
   --charcoal-2:  #1c1e16;   /* panneaux au survol */
   --line:        #2b2d21;   /* traits fins, séparateurs */
   --line-soft:   rgba(234,230,217,0.08);
@@ -445,6 +446,8 @@ button{ font-family: inherit; cursor: pointer; }
 
 /* carte générique */
 .card{
+  position: relative;
+  overflow: hidden;
   background: var(--charcoal);
   border: 1px solid var(--line);
   padding: 32px 28px;
@@ -454,6 +457,34 @@ button{ font-family: inherit; cursor: pointer; }
   border-color: var(--moss-dim);
   background: var(--charcoal-2);
   transform: translateY(-4px);
+}
+
+/* image de fond optionnelle sur une carte (ex: les 4 piliers de l'accueil) */
+.card-bg{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(0.3) sepia(0.25) hue-rotate(65deg) saturate(1.1) brightness(0.42) contrast(1.1);
+  transition: transform 0.5s var(--ease), filter 0.5s var(--ease);
+}
+.card:hover .card-bg{
+  transform: scale(1.06);
+  filter: grayscale(0.25) sepia(0.22) hue-rotate(65deg) saturate(1.15) brightness(0.52) contrast(1.12);
+}
+.card-fade{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(var(--void-rgb), 0.5) 0%,
+    rgba(var(--void-rgb), 0.88) 100%);
+}
+.card-body{
+  position: relative;
+  z-index: 2;
 }
 .card-icon{
   width: 46px; height: 46px;
