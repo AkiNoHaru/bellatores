@@ -10,6 +10,7 @@
 :root{
   /* Couleurs — mêmes tons que la référence visuelle */
   --void:        #0a0b08;   /* fond principal, noir chaud */
+  --void-rgb:    10,11,8;   /* même couleur, en RGB pour les dégradés semi-transparents */
   --void-2:      #0e0f0b;   /* fond secondaire (sections alternées) */
   --charcoal:    #15160f;   /* panneaux / cartes */
   --charcoal-2:  #1c1e16;   /* panneaux au survol */
@@ -221,7 +222,39 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .nav-toggle svg{ width: 18px; height: 18px; }
 
-/* ---------- 5. Watermark (grand texte en filigrane) ---------- */
+/* ---------- 5. Images de fond intégrées ---------- */
+/* .scene-bg  : l'image elle-même, teintée pour coller à la palette du site.
+   .scene-fade: le fondu qui la fait disparaître dans le noir sur les bords
+                et en bas, pour que le texte reste lisible sans cacher l'image
+                sous un bandeau plat.
+   → À mettre dans un conteneur en position:relative + overflow:hidden
+     (.hero et .page-hero le sont déjà). */
+.scene-bg{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  /* pousse n'importe quelle image vers la palette sombre/mousse du site */
+  filter: grayscale(0.25) sepia(0.3) hue-rotate(65deg) saturate(1.15) brightness(0.5) contrast(1.15);
+  z-index: 0;
+}
+.scene-fade{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg,
+      rgba(var(--void-rgb), 1) 0%,
+      rgba(var(--void-rgb), 0.15) 42%,
+      rgba(var(--void-rgb), 0.15) 62%,
+      rgba(var(--void-rgb), 1) 100%),
+    linear-gradient(180deg,
+      rgba(var(--void-rgb), 0) 0%,
+      rgba(var(--void-rgb), 0.9) 96%);
+}
+
+/* ---------- 6. Watermark (grand texte en filigrane) ---------- */
 .watermark{
   position: absolute;
   left: 50%;
@@ -235,10 +268,10 @@ button{ font-family: inherit; cursor: pointer; }
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  z-index: 0;
+  z-index: 2;
 }
 
-/* ---------- 6. Hero — page d'accueil ---------- */
+/* ---------- 7. Hero — page d'accueil ---------- */
 .hero{
   position: relative;
   min-height: 100vh;
@@ -339,7 +372,7 @@ button{ font-family: inherit; cursor: pointer; }
 .hero-index a .idx-arrow{ opacity: 0; transition: opacity 0.25s var(--ease); color: var(--moss); }
 .hero-index a:hover .idx-arrow, .hero-index a.is-active .idx-arrow{ opacity: 1; }
 
-/* ---------- 7. En-tête de page intérieure (lore, races, factions, magie) ---------- */
+/* ---------- 8. En-tête de page intérieure (lore, races, factions, magie) ---------- */
 .page-hero{
   position: relative;
   padding: calc(var(--header-h) + 90px) 0 70px;
@@ -360,7 +393,7 @@ button{ font-family: inherit; cursor: pointer; }
   font-size: 1.05rem;
 }
 
-/* ---------- 8. Sections de contenu ---------- */
+/* ---------- 9. Sections de contenu ---------- */
 .section{
   position: relative;
   padding: 100px 0;
@@ -443,7 +476,7 @@ button{ font-family: inherit; cursor: pointer; }
 .card-link .arrow{ transition: transform 0.25s var(--ease); }
 .card:hover .card-link .arrow{ transform: translateX(4px); }
 
-/* ---------- 9. Timeline (lore) ---------- */
+/* ---------- 10. Timeline (lore) ---------- */
 .timeline{
   position: relative;
   padding-left: 34px;
@@ -478,7 +511,7 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .timeline-text{ max-width: 620px; }
 
-/* ---------- 10. Faction / race detail rows ---------- */
+/* ---------- 11. Faction / race detail rows ---------- */
 .entry-row{
   display: grid;
   grid-template-columns: 220px 1fr;
@@ -526,7 +559,7 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .entry-meta b{ color: var(--mist); font-weight: 400; }
 
-/* ---------- 11. Callout / bloc encadré ---------- */
+/* ---------- 12. Callout / bloc encadré ---------- */
 .callout{
   border: 1px solid var(--line);
   border-left: 2px solid var(--moss);
@@ -535,7 +568,7 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .callout p:last-child{ margin-bottom: 0; }
 
-/* ---------- 12. Footer ---------- */
+/* ---------- 13. Footer ---------- */
 .site-footer{
   border-top: 1px solid var(--line);
   padding: 70px 0 34px;
@@ -576,7 +609,7 @@ button{ font-family: inherit; cursor: pointer; }
   color: var(--mist-dim);
 }
 
-/* ---------- 13. Reveal on scroll ---------- */
+/* ---------- 14. Reveal on scroll ---------- */
 .reveal{
   opacity: 0;
   transform: translateY(18px);
@@ -584,7 +617,7 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .reveal.is-visible{ opacity: 1; transform: translateY(0); }
 
-/* ---------- 14. Responsive ---------- */
+/* ---------- 15. Responsive ---------- */
 @media (max-width: 980px){
   .hero .container{ grid-template-columns: 1fr; }
   .hero-index{ display: none; }

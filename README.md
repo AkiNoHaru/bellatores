@@ -8,8 +8,9 @@ Site statique (HTML/CSS/JS, aucune dépendance) présentant le serveur roleplay 
 - `races.html` — Peuples jouables
 - `factions.html` — Maisons / ordres / clans
 - `magie.html` — Système de magie
-- `assets/style.css` — Styles partagés par toutes les pages
-- `assets/script.js` — Comportement partagé (menu mobile, scroll, etc.)
+- `style.css` — Styles partagés par toutes les pages
+- `script.js` — Comportement partagé (menu mobile, scroll, etc.)
+- `img/` — Images de fond des pages (voir `img/README.md` pour les noms de fichier attendus)
 
 ## Mettre à jour le contenu
 Chaque page est un fichier `.html` indépendant. Cherche `à remplacer` dans un fichier pour trouver les placeholders à compléter.
