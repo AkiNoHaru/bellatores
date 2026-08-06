@@ -256,6 +256,28 @@ button{ font-family: inherit; cursor: pointer; }
       rgba(var(--void-rgb), 0.9) 96%);
 }
 
+/* L'accueil a plus de texte à couvrir (citation + titre + description + bouton) :
+   fondu plus léger et image moins assombrie pour qu'elle reste visible,
+   avec un texte plus large et plus au centre/haut de l'image. */
+.hero .scene-bg{
+  filter: grayscale(0.2) sepia(0.28) hue-rotate(65deg) saturate(1.2) brightness(0.68) contrast(1.15);
+}
+.hero .scene-fade{
+  background:
+    linear-gradient(90deg,
+      rgba(var(--void-rgb), 0.82) 0%,
+      rgba(var(--void-rgb), 0.05) 32%,
+      rgba(var(--void-rgb), 0.05) 74%,
+      rgba(var(--void-rgb), 0.45) 100%),
+    linear-gradient(180deg,
+      rgba(var(--void-rgb), 0) 0%,
+      rgba(var(--void-rgb), 0.5) 68%,
+      rgba(var(--void-rgb), 0.8) 100%);
+}
+.hero-content{
+  text-shadow: 0 2px 20px rgba(0,0,0,0.65);
+}
+
 /* ---------- 6. Watermark (grand texte en filigrane) ---------- */
 .watermark{
   position: absolute;
