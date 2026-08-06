@@ -52,4 +52,36 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
+  /* --- Parallax : décale les couches .scene-far / .scene-near au scroll ---
+     Chaque couche porte data-parallax-speed="0.08" (lent, fond) ou "0.18"
+     (plus rapide, premier plan) — plus la valeur est grande, plus ça bouge. */
+  const parallaxLayers = document.querySelectorAll('[data-parallax-speed]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (parallaxLayers.length && !prefersReducedMotion) {
+    let ticking = false;
+
+    const updateParallax = () => {
+      parallaxLayers.forEach(layer => {
+        const speed = parseFloat(layer.dataset.parallaxSpeed) || 0;
+        const section = layer.closest('.hero, .page-hero');
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        // 0 quand la section touche le haut de l'écran, plafonné à sa propre hauteur
+        const scrolled = Math.min(Math.max(-rect.top, 0), rect.height);
+        layer.style.transform = `translate3d(0, ${scrolled * speed}px, 0)`;
+      });
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateParallax();
+  }
+
 });
