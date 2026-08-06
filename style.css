@@ -222,16 +222,14 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .nav-toggle svg{ width: 18px; height: 18px; }
 
-/* ---------- 5. Images de fond intégrées (parallax 2 couches) ---------- */
-/* .scene-far  : la couche de fond (paysage, château...) — bouge peu au scroll
-   .scene-near : la couche de premier plan (personnage...) — bouge un peu plus,
-                 avec un masque en vignette pour lire comme une silhouette
-                 même à partir d'une simple photo rectangulaire
-   .scene-fade : le fondu commun qui dissout les deux couches dans le noir
-                 sur les bords et en bas, pour garder le texte lisible
-   → Chaque couche est surdimensionnée (height:124%) pour avoir de la marge
-     de mouvement sans jamais laisser un bord vide apparaître au scroll. */
-.scene-layer{
+/* ---------- 5. Image de fond intégrée (parallax texte/fond) ---------- */
+/* .scene-bg  : l'image, teintée pour coller à la palette du site.
+   .scene-fade: le fondu qui la dissout dans le noir sur les bords et en bas.
+   → data-parallax-speed sur .scene-bg (posé en HTML) fait bouger l'image
+     un peu plus lentement que le texte au scroll, géré par script.js.
+   → Surdimensionnée (height:124%) pour avoir de la marge de mouvement
+     sans jamais laisser un bord vide apparaître. */
+.scene-bg{
   position: absolute;
   left: 0; right: 0;
   top: -12%;
@@ -239,21 +237,13 @@ button{ font-family: inherit; cursor: pointer; }
   background-size: cover;
   background-position: center;
   will-change: transform;
-}
-.scene-far{
   z-index: 0;
   filter: grayscale(0.25) sepia(0.3) hue-rotate(65deg) saturate(1.15) brightness(0.5) contrast(1.15);
-}
-.scene-near{
-  z-index: 1;
-  filter: grayscale(0.15) sepia(0.22) hue-rotate(65deg) saturate(1.25) brightness(0.72) contrast(1.2);
-  -webkit-mask-image: radial-gradient(ellipse 68% 88% at 50% 78%, black 50%, transparent 92%);
-  mask-image: radial-gradient(ellipse 68% 88% at 50% 78%, black 50%, transparent 92%);
 }
 .scene-fade{
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
   background:
     linear-gradient(90deg,
@@ -280,7 +270,7 @@ button{ font-family: inherit; cursor: pointer; }
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  z-index: 3;
+  z-index: 2;
 }
 
 /* ---------- 7. Hero — page d'accueil ---------- */
@@ -297,7 +287,7 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .hero .container{
   position: relative;
-  z-index: 4;
+  z-index: 3;
   display: grid;
   grid-template-columns: 1fr 220px;
   gap: 40px;
@@ -392,7 +382,7 @@ button{ font-family: inherit; cursor: pointer; }
   border-bottom: 1px solid var(--line);
   background: linear-gradient(180deg, var(--void) 0%, #0d0e0a 100%);
 }
-.page-hero .container{ position: relative; z-index: 4; }
+.page-hero .container{ position: relative; z-index: 3; }
 .page-hero .watermark{ top: 58%; }
 .page-title{
   font-family: var(--font-display);
