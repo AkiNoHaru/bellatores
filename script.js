@@ -50,9 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* --- Lien de nav actif selon la page courante --- */
   const current = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link[href]').forEach(link => {
+  document.querySelectorAll('.nav-link[href], .nav-dropdown-link[href]').forEach(link => {
     const href = link.getAttribute('href');
-    if (href === current) link.classList.add('is-active');
+    if (href === current) {
+      link.classList.add('is-active');
+      const trigger = link.closest('.nav-item')?.querySelector('.nav-dropdown-trigger');
+      if (trigger) trigger.classList.add('is-active');
+    }
   });
 
   /* --- Apparition progressive au scroll --- */
