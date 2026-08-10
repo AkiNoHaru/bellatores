@@ -223,6 +223,56 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .nav-toggle svg{ width: 18px; height: 18px; }
 
+/* menu déroulant "Explorer" dans la nav */
+.nav-item{ position: relative; }
+.nav-dropdown-trigger{
+  background: none;
+  border: none;
+  padding: 6px 0;
+  font: inherit;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.caret{ font-size: 0.6rem; transition: transform 0.25s var(--ease); }
+.nav-item:hover .caret,
+.nav-item.is-open .caret{ transform: rotate(180deg); }
+
+.nav-dropdown{
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: var(--charcoal);
+  border: 1px solid var(--line);
+  min-width: 210px;
+  padding: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
+  z-index: 50;
+}
+.nav-item:hover .nav-dropdown,
+.nav-item:focus-within .nav-dropdown,
+.nav-item.is-open .nav-dropdown{
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown-link{
+  display: block;
+  padding: 11px 22px;
+  font-family: var(--font-utility);
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mist);
+  white-space: nowrap;
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.nav-dropdown-link:hover{ color: var(--parchment); background: rgba(138,165,131,0.08); }
+
 /* ---------- 5. Image de fond intégrée (parallax texte/fond) ---------- */
 /* .scene-bg  : l'image, teintée pour coller à la palette du site.
    .scene-fade: le fondu qui la dissout dans le noir sur les bords et en bas.
@@ -672,7 +722,89 @@ button{ font-family: inherit; cursor: pointer; }
 }
 .reveal.is-visible{ opacity: 1; transform: translateY(0); }
 
-/* ---------- 15. Responsive ---------- */
+/* ---------- 15. Carte interactive ---------- */
+.map-wrap{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--charcoal);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+.map-image{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(0.25) sepia(0.3) hue-rotate(65deg) saturate(1.1) brightness(0.55) contrast(1.15);
+}
+.map-pin{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 26px; height: 26px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.map-pin::before{
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: rgba(138, 165, 131, 0.35);
+  animation: map-pin-pulse 2.4s ease-out infinite;
+}
+.map-pin-dot{
+  width: 12px; height: 12px;
+  background: var(--moss);
+  border: 2px solid var(--parchment);
+  border-radius: 50%;
+  transform: rotate(45deg);
+  transition: transform 0.25s var(--ease), background 0.25s var(--ease);
+}
+.map-pin:hover .map-pin-dot,
+.map-pin.is-active .map-pin-dot{
+  background: var(--moss-bright);
+  transform: rotate(45deg) scale(1.35);
+}
+@keyframes map-pin-pulse{
+  0%{ transform: scale(0.5); opacity: 0.9; }
+  100%{ transform: scale(1.6); opacity: 0; }
+}
+.map-info{
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--moss);
+  background: var(--charcoal);
+  padding: 28px 32px;
+}
+.map-info-title{
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--parchment);
+  margin-bottom: 10px;
+}
+.map-info-desc{ margin: 0; }
+.map-legend{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-family: var(--font-utility);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mist-dim);
+}
+.map-legend .map-pin-dot{
+  position: static;
+  transform: rotate(45deg);
+}
+/* ---------- 16. Responsive ---------- */
 @media (max-width: 980px){
   .hero .container{ grid-template-columns: 1fr; }
   .hero-index{ display: none; }
@@ -703,6 +835,31 @@ button{ font-family: inherit; cursor: pointer; }
     border-bottom: 1px solid var(--line-soft);
   }
   .nav-toggle{ display: flex; }
+  .nav-dropdown{
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: none;
+    border: none;
+    min-width: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s var(--ease);
+  }
+  .nav-item.is-open .nav-dropdown{ max-height: 320px; }
+  .nav-dropdown-link{
+    padding: 16px 32px 16px 46px;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--mist-dim);
+  }
+  .nav-dropdown-trigger{
+    width: 100%;
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--line-soft);
+    justify-content: space-between;
+  }
   .grid-2, .grid-3{ grid-template-columns: 1fr; }
   .container{ padding: 0 22px; }
   .section{ padding: 70px 0; }

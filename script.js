@@ -29,6 +29,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* --- Menu déroulant "Explorer" (clic/tap, en plus du survol desktop) --- */
+  document.querySelectorAll('.nav-dropdown-trigger').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const item = trigger.closest('.nav-item');
+      const isOpen = item.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('.nav-item.is-open').forEach(item => {
+      if (!item.contains(e.target)) {
+        item.classList.remove('is-open');
+        const t = item.querySelector('.nav-dropdown-trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
   /* --- Lien de nav actif selon la page courante --- */
   const current = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-link[href]').forEach(link => {
@@ -50,6 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => io.observe(el));
   } else {
     revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+
+  /* --- Carte interactive : clic sur un marqueur --- */
+  const mapPins = document.querySelectorAll('.map-pin');
+  const mapInfoTitle = document.getElementById('mapInfoTitle');
+  const mapInfoDesc = document.getElementById('mapInfoDesc');
+  if (mapPins.length && mapInfoTitle && mapInfoDesc) {
+    mapPins.forEach(pin => {
+      pin.addEventListener('click', () => {
+        mapPins.forEach(p => p.classList.remove('is-active'));
+        pin.classList.add('is-active');
+        mapInfoTitle.textContent = pin.dataset.name || '';
+        mapInfoDesc.textContent = pin.dataset.desc || '';
+      });
+    });
   }
 
   /* --- Parallax : décale les couches .scene-far / .scene-near au scroll ---
