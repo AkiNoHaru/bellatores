@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royaume du Cauchemar — Bellatores</title>
+<title>Royaume du Cauchemar - Bellatores</title>
 <meta name="description" content="Tout ce que l'on sait déjà sur le Royaume du Cauchemar, ce monde en ruine, ses mystères et ses dangers.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,16 +18,15 @@
     <nav class="nav-group" id="navGroup">
       <a class="nav-link" href="index.html">Accueil</a>
       <a class="nav-link" href="lore.html">Lore</a>
-      <a class="nav-link" href="royaume.html">Royaume</a>
+      <a class="nav-link" href="archive.html">Archive</a>
       <div class="nav-item">
         <button class="nav-link nav-dropdown-trigger" type="button" aria-expanded="false" aria-haspopup="true">Explorer <span class="caret">&#9662;</span></button>
         <div class="nav-dropdown">
-          <a class="nav-dropdown-link" href="factions.html">Factions</a>
+          <a class="nav-dropdown-link" href="factions.html">Factions &amp; PNJ</a>
           <a class="nav-dropdown-link" href="magie.html">Magie</a>
-          <a class="nav-dropdown-link" href="memoires.html">M&eacute;moires</a>
-          <a class="nav-dropdown-link" href="echos.html">&Eacute;chos</a>
+          <a class="nav-dropdown-link" href="royaume.html">Royaume du Cauchemar</a>
+          <a class="nav-dropdown-link" href="memoires-echos.html">M&eacute;moires &amp; &Eacute;chos</a>
           <a class="nav-dropdown-link" href="bestiaire.html">Bestiaire</a>
-          <a class="nav-dropdown-link" href="carte-interactive.html">Carte interactive</a>
         </div>
       </div>
     </nav>
@@ -64,8 +63,49 @@
       </div>
       <div class="callout reveal">
         <div class="eyebrow"><span class="mark"></span> Dangers</div>
-        <p>[Texte à remplacer] Une note sur les monstres et les menaces qui peuplent ce monde — à quoi un rêveur doit s'attendre en explorant les ruines, et pourquoi certaines zones restent inaccessibles.</p>
+        <p>[Texte à remplacer] Une note sur les monstres et les menaces qui peuplent ce monde - à quoi un rêveur doit s'attendre en explorant les ruines, et pourquoi certaines zones restent inaccessibles.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CARTE ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="mark"></span> Carte interactive</div>
+      <h2 class="section-title">Repérer un lieu</h2>
+      <p class="section-lede">Clique sur un marqueur pour afficher sa description.</p>
+    </div>
+
+    <div class="map-legend reveal">
+      <span class="map-pin-dot"></span> Point d'intérêt cliquable
+    </div>
+
+    <div class="map-wrap reveal">
+      <div class="map-image" style="background-image:url('img/carte-royaume.jpg')"></div>
+
+      <button class="map-pin" style="top:28%; left:20%;" data-name="[Lieu 1 à remplacer]" data-desc="[Texte à remplacer] Décris ce lieu : ce qu'on y trouve, ses dangers, son importance dans le Royaume.">
+        <span class="map-pin-dot"></span>
+      </button>
+      <button class="map-pin" style="top:38%; left:52%;" data-name="[Lieu 2 à remplacer]" data-desc="[Texte à remplacer] Décris ce lieu : ce qu'on y trouve, ses dangers, son importance dans le Royaume.">
+        <span class="map-pin-dot"></span>
+      </button>
+      <button class="map-pin" style="top:62%; left:35%;" data-name="[Lieu 3 à remplacer]" data-desc="[Texte à remplacer] Décris ce lieu : ce qu'on y trouve, ses dangers, son importance dans le Royaume.">
+        <span class="map-pin-dot"></span>
+      </button>
+      <button class="map-pin" style="top:70%; left:68%;" data-name="[Lieu 4 à remplacer]" data-desc="[Texte à remplacer] Décris ce lieu : ce qu'on y trouve, ses dangers, son importance dans le Royaume.">
+        <span class="map-pin-dot"></span>
+      </button>
+      <button class="map-pin" style="top:18%; left:75%;" data-name="[Lieu 5 à remplacer]" data-desc="[Texte à remplacer] Décris ce lieu : ce qu'on y trouve, ses dangers, son importance dans le Royaume.">
+        <span class="map-pin-dot"></span>
+      </button>
+    </div>
+
+    <div class="map-info reveal">
+      <div class="eyebrow"><span class="mark"></span> Sélection</div>
+      <h3 class="map-info-title" id="mapInfoTitle">Choisis un point sur la carte</h3>
+      <p class="map-info-desc" id="mapInfoDesc">Clique sur l'un des marqueurs ci-dessus pour afficher sa description ici.</p>
     </div>
   </div>
 </section>
@@ -76,7 +116,7 @@
     <div class="section-head reveal">
       <div class="eyebrow"><span class="mark"></span> Aller plus loin</div>
       <h2 class="section-title">À explorer</h2>
-      <p class="section-lede">Le Royaume du Cauchemar cache bien plus que ce qui est résumé ici — quatre sections lui sont entièrement dédiées.</p>
+      <p class="section-lede">Le Royaume du Cauchemar cache bien plus que ce qui est résumé ici - deux sections lui sont entièrement dédiées.</p>
     </div>
 
     <div class="grid grid-2">
@@ -89,30 +129,12 @@
         </div>
       </a>
 
-      <a class="card reveal" href="memoires.html">
+      <a class="card reveal" href="memoires-echos.html">
         <div class="card-body">
           <div class="card-icon"><span>M</span></div>
-          <h3 class="card-title">Mémoires</h3>
-          <p>[Texte à remplacer] Résumé en une ou deux lignes des objets magiques que l'on peut rapporter du Royaume.</p>
-          <span class="card-link">Voir les mémoires <span class="arrow">→</span></span>
-        </div>
-      </a>
-
-      <a class="card reveal" href="echos.html">
-        <div class="card-body">
-          <div class="card-icon"><span>É</span></div>
-          <h3 class="card-title">Échos</h3>
-          <p>[Texte à remplacer] Résumé en une ou deux lignes des invocations qui peuvent accompagner un rêveur.</p>
-          <span class="card-link">Voir les échos <span class="arrow">→</span></span>
-        </div>
-      </a>
-
-      <a class="card reveal" href="carte-interactive.html">
-        <div class="card-body">
-          <div class="card-icon"><span>C</span></div>
-          <h3 class="card-title">Carte interactive</h3>
-          <p>[Texte à remplacer] Résumé en une ou deux lignes de ce que la carte permet de repérer.</p>
-          <span class="card-link">Voir la carte <span class="arrow">→</span></span>
+          <h3 class="card-title">Mémoires &amp; Échos</h3>
+          <p>[Texte à remplacer] Résumé en une ou deux lignes des objets magiques et des invocations que l'on peut rapporter du Royaume.</p>
+          <span class="card-link">Voir les mémoires &amp; échos <span class="arrow">→</span></span>
         </div>
       </a>
     </div>
@@ -131,9 +153,8 @@
         <div class="footer-col-title">Explorer</div>
         <ul class="footer-links">
           <li><a href="lore.html">Lore</a></li>
+          <li><a href="archive.html">Archive</a></li>
           <li><a href="royaume.html">Royaume du Cauchemar</a></li>
-          <li><a href="factions.html">Factions</a></li>
-          <li><a href="magie.html">Magie</a></li>
         </ul>
       </div>
       <div>

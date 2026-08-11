@@ -1,5 +1,5 @@
 /* =========================================================
-   BELLATORES — script.js
+   BELLATORES - script.js
    Script PARTAGÉ par toutes les pages : menu mobile, header
    au scroll, apparition progressive des blocs au scroll.
    ========================================================= */
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* --- Parallax : décale les couches .scene-far / .scene-near au scroll ---
      Chaque couche porte data-parallax-speed="0.08" (lent, fond) ou "0.18"
-     (plus rapide, premier plan) — plus la valeur est grande, plus ça bouge. */
+     (plus rapide, premier plan) - plus la valeur est grande, plus ça bouge. */
   const parallaxLayers = document.querySelectorAll('[data-parallax-speed]');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

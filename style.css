@@ -1,5 +1,5 @@
 /* =========================================================
-   BELLATORES — style.css
+   BELLATORES - style.css
    Feuille de style PARTAGÉE par toutes les pages.
    Modifie ce fichier pour changer couleurs / polices / espacements
    partout d'un coup. Le contenu de chaque page reste dans son
@@ -8,7 +8,7 @@
 
 /* ---------- 1. Design tokens ---------- */
 :root{
-  /* Couleurs — mêmes tons que la référence visuelle */
+  /* Couleurs - mêmes tons que la référence visuelle */
   --void:        #0a0b08;   /* fond principal, noir chaud */
   --void-rgb:    10,11,8;   /* même couleur, en RGB pour les dégradés semi-transparents */
   --void-2:      #0e0f0b;   /* fond secondaire (sections alternées) */
@@ -22,7 +22,7 @@
   --mist:        #9a988a;   /* texte secondaire / muted */
   --mist-dim:    #6d6c60;   /* texte tertiaire, légendes */
 
-  --moss:        #8aa583;   /* accent — vert mousse (plume / lueur) */
+  --moss:        #8aa583;   /* accent - vert mousse (plume / lueur) */
   --moss-bright: #a9c7a0;   /* accent clair, hover */
   --moss-dim:    #445340;   /* accent sombre, bordures */
 
@@ -85,7 +85,7 @@ button{ font-family: inherit; cursor: pointer; }
 
 /* ---------- 3. Motifs signature ---------- */
 /* Marque héraldique : un losange fin, utilisé devant les eyebrows,
-   dans les séparateurs et les en-têtes de carte — rappel des sceaux
+   dans les séparateurs et les en-têtes de carte - rappel des sceaux
    de maison plutôt qu'un simple bullet point. */
 .mark{
   display: inline-block;
@@ -114,7 +114,7 @@ button{ font-family: inherit; cursor: pointer; }
   margin: 0;
 }
 
-/* coins style "HUD" — utilisés pour encadrer un panneau clé par page */
+/* coins style "HUD" - utilisés pour encadrer un panneau clé par page */
 .bracket{
   position: relative;
 }
@@ -347,7 +347,7 @@ button{ font-family: inherit; cursor: pointer; }
   z-index: 2;
 }
 
-/* ---------- 7. Hero — page d'accueil ---------- */
+/* ---------- 7. Hero - page d'accueil ---------- */
 .hero{
   position: relative;
   min-height: 100vh;
