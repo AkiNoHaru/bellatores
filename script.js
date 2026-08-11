@@ -75,6 +75,26 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
+  /* --- Onglets (page Archive) --- */
+  const tabBtns = document.querySelectorAll('.tab-btn[data-tab]');
+  if (tabBtns.length) {
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        tabBtns.forEach(b => {
+          const isMatch = b === btn;
+          b.classList.toggle('is-active', isMatch);
+          b.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+        });
+        document.querySelectorAll('.tab-panel[id]').forEach(panel => {
+          const isMatch = panel.id === `tab-${target}`;
+          panel.classList.toggle('is-active', isMatch);
+          panel.hidden = !isMatch;
+        });
+      });
+    });
+  }
+
   /* --- Carte interactive : clic sur un marqueur --- */
   const mapPins = document.querySelectorAll('.map-pin');
   const mapInfoTitle = document.getElementById('mapInfoTitle');
